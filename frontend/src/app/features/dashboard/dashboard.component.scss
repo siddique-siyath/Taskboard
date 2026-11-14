@@ -1,0 +1,49 @@
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  border-left: 5px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat .label {
+  color: var(--tb-muted);
+  font-weight: 500;
+}
+
+.stat .value {
+  font-size: 2.1rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.capacity h2 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+}
+
+.meter {
+  margin-bottom: 18px;
+}
+
+.meter:last-child {
+  margin-bottom: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+mat-progress-bar.full {
+  --mat-progress-bar-active-indicator-color: var(--tb-critical);
+}

@@ -1,0 +1,49 @@
+.tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.low {
+    background: #e6edf2;
+    color: #3f5a70;
+}
+
+.medium {
+    background: #e3edfb;
+    color: #1f56ae;
+}
+
+.high {
+    background: #fdf0d6;
+    color: #8a5605;
+}
+
+.critical {
+    background: #fbe0e2;
+    color: #9b2229;
+}
+
+.backlog {
+    background: #e9ecf0;
+    color: #4a5566;
+}
+
+.planned {
+    background: #e3edfb;
+    color: #1f56ae;
+}
+
+.in-progress {
+    background: #fdf0d6;
+    color: #8a5605;
+}
+
+.completed {
+    background: #dcf3e6;
+    color: #1b6a43;
+}

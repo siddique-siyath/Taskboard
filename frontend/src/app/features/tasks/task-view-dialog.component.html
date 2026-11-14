@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>{{ task.title }}</h2>
+<mat-dialog-content>
+  <p class="desc">{{ task.description || 'No description.' }}</p>
+  <dl>
+    <dt>Status</dt><dd><app-tag [value]="task.status" /></dd>
+    <dt>Priority</dt><dd><app-tag [value]="task.priority" /></dd>
+    <dt>Story points</dt><dd>{{ task.storyPoints }}</dd>
+    <dt>Planned date</dt><dd>{{ task.plannedDate | date: 'mediumDate' }}</dd>
+    <dt>Due date</dt><dd>{{ task.dueDate ? (task.dueDate | date: 'mediumDate') : 'Not set' }}</dd>
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-flat-button [mat-dialog-close]="'edit'">Edit</button>
+</mat-dialog-actions>

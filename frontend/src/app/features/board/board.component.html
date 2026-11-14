@@ -1,0 +1,42 @@
+<div class="page">
+  <header class="page-header">
+    <div><h1>Board</h1><p>Drag a card to change its status. Moving out of Backlog checks capacity.</p></div>
+    <div class="header-actions">
+      <button mat-stroked-button (click)="load()"><mat-icon>refresh</mat-icon> Refresh</button>
+      <button mat-flat-button (click)="openForm()"><mat-icon>add</mat-icon> New task</button>
+    </div>
+  </header>
+
+  @if (error()) {
+    <div class="banner-error" role="alert">{{ error() }} <button mat-button (click)="load()">Retry</button></div>
+  }
+
+  <div class="board" cdkDropListGroup>
+    @for (status of statuses; track status) {
+      <section class="column" [attr.data-status]="status">
+        <header class="column-head">
+          <h2>{{ status }}</h2>
+          <span class="count" [attr.aria-label]="columns()[status].length + ' tasks'">{{ columns()[status].length }}</span>
+        </header>
+
+        <div class="list" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="columns()[status]" (cdkDropListDropped)="drop($event, status)">
+          @for (task of columns()[status]; track task.id) {
+            <article class="card" cdkDrag [cdkDragData]="task" [class.saving]="saving().has(task.id)">
+              <div class="card-top">
+                <span class="card-title">{{ task.title }}</span>
+                <button mat-icon-button class="edit" aria-label="Edit task" (click)="openForm(task)"><mat-icon>edit</mat-icon></button>
+              </div>
+              <div class="card-meta">
+                <span class="points" title="Story points">{{ task.storyPoints }} pts</span>
+                <app-tag [value]="task.priority" />
+              </div>
+              <div class="card-date"><mat-icon>event</mat-icon>{{ task.plannedDate | date: 'EEE, d MMM' }}</div>
+            </article>
+          } @empty {
+            <p class="empty">Drop tasks here</p>
+          }
+        </div>
+      </section>
+    }
+  </div>
+</div>

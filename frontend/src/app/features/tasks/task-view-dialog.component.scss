@@ -1,0 +1,22 @@
+.desc {
+  white-space: pre-wrap;
+  color: var(--tb-muted);
+  margin-top: 0;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px 12px;
+  margin: 16px 0 0;
+  align-items: center;
+}
+
+dt {
+  color: var(--tb-muted);
+}
+
+dd {
+  margin: 0;
+  font-weight: 500;
+}

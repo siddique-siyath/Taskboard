@@ -1,0 +1,37 @@
+<div class="page">
+  <header class="page-header">
+    <div><h1>Dashboard</h1><p>Where work stands right now.</p></div>
+    <a mat-flat-button routerLink="/board">Open board</a>
+  </header>
+
+  @if (error()) {
+    <div class="banner-error" role="alert">{{ error() }} <button mat-button (click)="load()">Retry</button></div>
+  }
+
+  @if (summary(); as s) {
+    <section class="stats">
+      @for (card of cards(); track card.label) {
+        <article class="panel stat" [style.--accent]="card.color">
+          <span class="label">{{ card.label }}</span>
+          <strong class="value">{{ card.value }}</strong>
+        </article>
+      }
+    </section>
+  }
+
+  @if (usage(); as u) {
+    <section class="panel capacity">
+      <h2>Capacity</h2>
+      <div class="meter">
+        <div class="row"><span>Today ({{ u.date | date: 'EEE d MMM' }})</span><strong>{{ u.dailyPlanned }} / {{ u.dailyLimit }} points</strong></div>
+        <mat-progress-bar mode="determinate" [value]="percent(u.dailyPlanned, u.dailyLimit)" [class.full]="u.dailyPlanned >= u.dailyLimit" />
+        <small class="muted">{{ u.dailyRemaining }} points left today</small>
+      </div>
+      <div class="meter">
+        <div class="row"><span>This week ({{ u.weekStart | date: 'd MMM' }} – {{ u.weekEnd | date: 'd MMM' }})</span><strong>{{ u.weeklyPlanned }} / {{ u.weeklyLimit }} points</strong></div>
+        <mat-progress-bar mode="determinate" [value]="percent(u.weeklyPlanned, u.weeklyLimit)" [class.full]="u.weeklyPlanned >= u.weeklyLimit" />
+        <small class="muted">{{ u.weeklyRemaining }} points left this week</small>
+      </div>
+    </section>
+  }
+</div>

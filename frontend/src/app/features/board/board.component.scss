@@ -1,0 +1,138 @@
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+  gap: 16px;
+  align-items: start;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.column {
+  background: #e8ecf2;
+  border-radius: 12px;
+  border-top: 4px solid var(--c);
+  min-width: 240px;
+}
+
+[data-status='Backlog'] { --c: var(--tb-backlog); }
+[data-status='Planned'] { --c: var(--tb-planned); }
+[data-status='In Progress'] { --c: var(--tb-progress); }
+[data-status='Completed'] { --c: var(--tb-done); }
+
+.column-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 4px;
+}
+
+.column-head h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.count {
+  background: var(--tb-surface);
+  border-radius: 999px;
+  min-width: 28px;
+  text-align: center;
+  padding: 2px 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.list {
+  min-height: 120px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card {
+  background: var(--tb-surface);
+  border: 1px solid var(--tb-line);
+  border-radius: 10px;
+  padding: 12px;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card.saving {
+  opacity: 0.6;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.card-title {
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.edit {
+  margin: -8px -8px 0 0;
+  --mdc-icon-button-icon-size: 18px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.points {
+  background: #1a2230;
+  color: #fff;
+  border-radius: 6px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.card-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--tb-muted);
+  font-size: 0.85rem;
+}
+
+.card-date mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.empty {
+  margin: 8px 0;
+  text-align: center;
+  color: var(--tb-muted);
+  font-size: 0.9rem;
+  border: 2px dashed #c4ccd8;
+  border-radius: 10px;
+  padding: 18px 8px;
+}
+
+.list.cdk-drop-list-dragging .card:not(.cdk-drag-placeholder) {
+  transition: transform 200ms;
+}

@@ -1,0 +1,25 @@
+@if (loading.active()) {
+  <mat-progress-bar class="top-loader" mode="indeterminate" aria-label="Loading" />
+}
+<mat-toolbar class="toolbar">
+  <button mat-icon-button (click)="navOpen.set(!navOpen())" aria-label="Toggle navigation">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="brand">Taskboard</span>
+  <span class="spacer"></span>
+  <span class="who">{{ auth.user()?.email }}</span>
+  <button mat-stroked-button (click)="auth.logout()"><mat-icon>logout</mat-icon> Log out</button>
+</mat-toolbar>
+
+<mat-sidenav-container class="container">
+  <mat-sidenav [mode]="isMobile() ? 'over' : 'side'" [opened]="navOpen()" (closedStart)="navOpen.set(false)" class="sidenav">
+    <nav>
+      @for (item of items; track item.path) {
+        <a [routerLink]="item.path" routerLinkActive="active" (click)="isMobile() && navOpen.set(false)">
+          <mat-icon>{{ item.icon }}</mat-icon>{{ item.label }}
+        </a>
+      }
+    </nav>
+  </mat-sidenav>
+  <mat-sidenav-content><router-outlet /></mat-sidenav-content>
+</mat-sidenav-container>
